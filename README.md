@@ -2,8 +2,8 @@
 
 Multimodal Large Language Models (MLLMs) are capable of extracting and synthesizing information from various modalities of input (e.g. textual, visual, auditory). Extracting visual information from images of line and bar graphs is particularly challenging due to the high-level of compression, overlapping visuals, and various scales. We benchmarked seven SoTA VLMs and MLLMs on structured and unstructured graphical extraction tasks across various types of graphs, and fine-tuned IBM: Granite Vision 3.3 2B model (due to lightweight and computational constraints). Results showed that basic graph extraction tasks such as extrema extraction were easier for models than more fine-trained and ambagious tasks. While pretrained MLLMs often misread domains and axis ranges (e.g., Granite 3.3-2B reaches only 0.29 domain F1), lightweight QLoRA fine-tuning on our annotated graphs raises its domain F1 to 0.84 and drives numeric sMAPE down to small, stable values. Finally, graph type did not significant impact the models' abilities to understand graphs although more visually-dense graphs were more challenging to analyze.
 
-**[FULL PAPER](https://drive.google.com/file/d/19kKn1KiEmAr3S23-mYtwPaNNaUW8ZZy4/view?usp=sharing)
-**__
+### [FULL PAPER](https://drive.google.com/file/d/19kKn1KiEmAr3S23-mYtwPaNNaUW8ZZy4/view?usp=sharing)
+
 
 ## Summary of Results
 ### Benchmarking Results
