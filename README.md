@@ -2,7 +2,8 @@
 
 Multimodal Large Language Models (MLLMs) are capable of extracting and synthesizing information from various modalities of input (e.g. textual, visual, auditory). Extracting visual information from images of line and bar graphs is particularly challenging due to the high-level of compression, overlapping visuals, and various scales. We benchmarked seven SoTA VLMs and MLLMs on structured and unstructured graphical extraction tasks across various types of graphs, and fine-tuned IBM: Granite Vision 3.3 2B model (due to lightweight and computational constraints). Results showed that basic graph extraction tasks such as extrema extraction were easier for models than more fine-trained and ambagious tasks. While pretrained MLLMs often misread domains and axis ranges (e.g., Granite 3.3-2B reaches only 0.29 domain F1), lightweight QLoRA fine-tuning on our annotated graphs raises its domain F1 to 0.84 and drives numeric sMAPE down to small, stable values. Finally, graph type did not significant impact the models' abilities to understand graphs although more visually-dense graphs were more challenging to analyze.
 
-## [FULL PAPER](https://drive.google.com/file/d/19kKn1KiEmAr3S23-mYtwPaNNaUW8ZZy4/view?usp=sharing)
+**[FULL PAPER](https://drive.google.com/file/d/19kKn1KiEmAr3S23-mYtwPaNNaUW8ZZy4/view?usp=sharing)
+**__
 
 ## Summary of Results
 ### Benchmarking Results
@@ -19,13 +20,6 @@ Multimodal Large Language Models (MLLMs) are capable of extracting and synthesiz
 Symmetric Mean Absolute Percentage Error (sMAPE) 
 sMAPE = (1 / N) * sum_{i=1 to N} ( |y_i - y_hat_i| / R_i )
 
-Domain F1-scores are generally low to moderate (0.07--0.29), indicating that models find it hard to assign a single domain from image-only evidence. Granite 3.3--2B achieves the highest domain F1, but all models struggle overall. This is likely due to overlapping visual and textual cues across domains and an imbalanced label distribution, which encourages models to favor majority classes and leads to frequent misclassifications. Also, the graphs themselves are only weakly domain-specific (such as generic titles and similar bar/line shapes across fields), so correctly predicting the domain requires subtle world knowledge rather than purely visual pattern matching, making this a particularly difficult task for the models.
-
-Levenshtein similarity is near-perfect (0.96--1.00) for most models, indicating that extracted titles are usually very close to the ground truth or short enough that small edits barely affect the normalized score. Non-zero Levenshtein distances (0.31--0.55) for the Gemma, Mistral, and Qwen models suggest consistent minor character-level differences (casing, punctuation, small token edits). Granite 3.3--2B has a noticeably larger average edit distance (2.32) and slightly lower similarity (0.96), suggesting more frequent or more substantial title variations, but still generally reasonable title extraction.
-
-For the numeric fields, the sMAPE highlights systematic differences between models. For the y-maximum, Qwen2.5 and Mistral 3.2 achieve the lowest errors, with Gemma 3--4B close behind, while Gemma 3--12B and 3--27B exhibit somewhat higher sMAPE. For the y-minimum, Gemma 3--4B and 3--12B are comparatively strong, whereas Gemma 3--27B shows higher error. Across the y-axis bounds (range lower/upper), Gemma 3--27B performs best, especially on the lower bound, and Qwen2.5 and Gemma 3--12B also show relatively low errors. Mistral 3.2 and Gemma 3--4B have larger sMAPE on the lower bound, suggesting more difficulty in accurately locating the axis origin or lower limit.
-
-Granite 3.3--2B stands out as an outlier on the numeric metrics, with extremely large  sMAPE values for both the extrema and the axis bounds. This suggests that, despite its comparatively strong domain classification and reasonable title extraction, its numeric predictions are often far outside the true ranges (or that it systematically misinterprets the y-axis scale). In practice, this means Granite 3.3--2B is not competitive on precise numeric reading of graph axes in this benchmark, even though it performs relatively well on the higher-level domain and text-oriented tasks. While the next biggest model, Gemma 3 4B, has only 2 billion more parameters, it performs much better and has scores similar to the bigger models in multiple metrics, including Title Levenshtein Distance and Max sMAPE. This indicates the wide gap in performance between models that have 2 billion parameters and models that have 4 billion or more. 
 
 ### Fine-tuned Results: IBM Granite Vision 3.3–2B 
 | Metric                  | Baseline (0 epochs) | Fine-tuned (3 epochs) | Fine-tuned (5 epochs) | Fine-tuned (8 epochs) |
