@@ -14,6 +14,5 @@ Multimodal Large Language Models (MLLMs) are capable of extracting and synthesiz
 | Gemma 3 27B        | 0.07      | 0.40            | 1.00           | 0.07      | 0.20      | **0.02**                     | **0.03**                      |
 
 Symmetric Mean Absolute Percentage Error (sMAPE) 
-\[
-\text{sMAPE} = \frac{1}{N} \sum_{i=1}^{N} \frac{\lvert y_i - \hat{y}_i \rvert}{R_i}
-\]
+sMAPE = (1 / N) · Σ(i = 1 → N) |yᵢ − ŷᵢ| / Rᵢ
+
